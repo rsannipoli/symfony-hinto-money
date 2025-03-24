@@ -1,0 +1,17 @@
+api_platform:
+    title: Hinto API
+    description: |
+        Queste sono le API che ho creato per il test di Hinto.
+    version: 1.0.0
+    use_symfony_listeners: true
+    show_webby: false
+    formats:
+        jsonld: ['application/ld+json']
+        json: ['application/json']
+    patch_formats:
+        json: ['application/json']
+        jsonmerge: ['application/merge-patch+json']
+    defaults:
+        stateless: true
+        cache_headers:
+            vary: ['Content-Type', 'Authorization', 'Origin']
