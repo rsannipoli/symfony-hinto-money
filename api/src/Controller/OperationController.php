@@ -13,12 +13,13 @@ class OperationController {
 
     public function __invoke(OperationRequest $data, MoneyService $moneyService): JsonResponse
     {
+        $result = "";
 
         if (!$data->getP1() || !$data->getP2()) {
             return new JsonResponse("Parametri mancanti");
         }
 
-        if (!$data->getOp()) {
+        if (!$data->getOp() || !in_array($data->getOp()->value, array_column(TipoOperazione::cases(), 'value'))) {
             return new JsonResponse("Operatore mancante");
         }
 
