@@ -2,15 +2,16 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\Put;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\Post;
-use ApiPlatform\Metadata\Put;
 use ApiPlatform\Metadata\Delete;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\OpenApi\Model\Operation;
+use ApiPlatform\OpenApi\Model\Response;
 
 #[ORM\Entity]
 #[ApiResource(
@@ -41,6 +42,14 @@ use ApiPlatform\OpenApi\Model\Operation;
         ),
         new Delete(
             openapi: new Operation(
+                responses: [
+                    '200' => new Response(
+                        description: 'Articolo eliminato correttamente'
+                    ),
+                    '404' => new Response(
+                        description: 'Articolo non trovato'
+                    )
+                ],
                 summary: 'Elimina articolo',
                 description: 'Rimuove un articolo dal catalogo'
             )
